@@ -514,31 +514,61 @@ without reflashing.
 
 ## Schematics
 
-> **Note:** Schematic images were shared during development sessions. If you have them,
-> add them here as image files in this folder and link them below.
+All KiCad design files live in the [`schematics/`](schematics/) folder.
+Open `.kicad_pro` files in KiCad 7+ to view or edit schematics and PCB layouts.
+Gerber files are included for PCB fabrication.
 
-### RP2040 Dev Board Wiring
+### Capstone Keyboard Design — Main PCB
 
-<!-- Add your schematic image here, e.g.:
-![RP2040 schematic](schematic_rp2040.png)
--->
+**Folder:** [`schematics/capstone_keyboard_design/`](schematics/capstone_keyboard_design/)
 
-Describes the wiring between:
-- The RP2040 board and the 4×4 key matrix (row/col pins + diodes)
-- The RP2040 board and the WS2812 LED strip (GP17 + power/ground)
-- The RP2040 board and the rotary encoder (GP12/14/15)
-- The UART connection: RP2040 GP0 → TENSTAR D5
+The primary PCB design for the keypad, integrating the key matrix, RGB LEDs,
+encoder, and all MCU connections.
 
-### 4×4 Keypad Matrix
+| File | Description |
+|------|-------------|
+| [`Capstone Keyboard Design.kicad_sch`](schematics/capstone_keyboard_design/Capstone%20Keyboard%20Design.kicad_sch) | Main schematic |
+| [`Capstone Keyboard Design.kicad_pcb`](schematics/capstone_keyboard_design/Capstone%20Keyboard%20Design.kicad_pcb) | PCB layout |
+| `Capstone Keyboard Design-*.gbr` | Gerber files (F_Cu, B_Cu, F/B_Mask, F/B_Silkscreen, Edge_Cuts, In1/In2_Cu, Paste) |
+| [`production_gerbers.zip`](schematics/capstone_keyboard_design/production_gerbers.zip) | Production-ready Gerber archive |
+| [`production_bom.csv`](schematics/capstone_keyboard_design/production_bom.csv) | Bill of materials |
+| [`production_positions.csv`](schematics/capstone_keyboard_design/production_positions.csv) | Component placement file |
 
-<!-- Add your matrix schematic here, e.g.:
-![Matrix schematic](schematic_matrix.png)
--->
+**PCB layers:** 4-layer board (F_Cu, In1_Cu, In2_Cu, B_Cu)
+
+### Matrix + Multiplex — Key Matrix Subproject
+
+**Folder:** [`schematics/matrix_multiplex/`](schematics/matrix_multiplex/)
+
+Standalone KiCad project for the 4×4 switch matrix wiring and the HC4067
+analog multiplexer expansion circuit.
+
+| File | Description |
+|------|-------------|
+| [`Matrix + Multiplex.kicad_sch`](schematics/matrix_multiplex/Matrix%20+%20Multiplex.kicad_sch) | Matrix + MUX schematic |
+| [`Matrix + Multiplex.kicad_pcb`](schematics/matrix_multiplex/Matrix%20+%20Multiplex.kicad_pcb) | PCB layout |
 
 The matrix uses standard COL2ROW diode wiring:
 - 4 rows (GP2–GP5) driven low one at a time
 - 4 columns (GP9–GP6) read with internal pull-ups
 - 1N4148 or equivalent diodes, cathode toward the row (COL2ROW)
+
+The HC4067 MUX section shows wiring for the 16-channel analog expansion
+(select pins S0–S3 on GP22/26/27/28, signal on GP29/ADC).
+
+### Numpad_TMR1 — Production Numpad PCB
+
+**Folder:** [`schematics/numpad_tmr1/`](schematics/numpad_tmr1/)
+
+Refined production version of the numpad PCB with full fabrication outputs.
+
+| File | Description |
+|------|-------------|
+| [`Numpad_TMR1.kicad_sch`](schematics/numpad_tmr1/Numpad_TMR1.kicad_sch) | Schematic |
+| [`Numpad_TMR1.kicad_pcb`](schematics/numpad_tmr1/Numpad_TMR1.kicad_pcb) | PCB layout |
+| [`production/Numpad_TMR1.zip`](schematics/numpad_tmr1/production/Numpad_TMR1.zip) | Production Gerber archive |
+| [`production/bom.csv`](schematics/numpad_tmr1/production/bom.csv) | Bill of materials |
+| [`production/positions.csv`](schematics/numpad_tmr1/production/positions.csv) | Component placement |
 
 ---
 
