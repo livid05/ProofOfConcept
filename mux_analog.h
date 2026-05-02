@@ -51,3 +51,5 @@ typedef struct {
 
 // Defined in mux_analog.c — edit that table to match your wiring.
 extern const mux_channel_map_t mux_channel_map[MUX_CHANNELS];
+
+
