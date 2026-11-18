@@ -1,0 +1,99 @@
+LICENSE: Tyler Judkins, ProofOfConcept repository
+=================================================
+
+Copyright (c) 2026 Tyler Judkins
+
+This repository holds several kinds of material. Each kind has its own terms,
+listed below. Where two parts of this file seem to disagree, the more specific
+part wins. A license file inside a folder always wins over this file for the
+files in that folder.
+
+1. Software and firmware written by Tyler Judkins  --  MIT License
+   Applies to: stm32u5a5-keypad/ (everything except the third-party parts in
+   section 4), the host tools and tests, build and flash scripts, the
+   diagnostic images under future_work/, the files in binaries/ that were built
+   from that code, and the Python, PowerShell and Arduino sources in
+   rp2040-reference/, ble_bridge/, esb_bridge/, esb_dongle/ and latency_test.py.
+
+   Permission is hereby granted, free of charge, to any person obtaining a copy
+   of this software and associated documentation files (the "Software"), to deal
+   in the Software without restriction, including without limitation the rights
+   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+   copies of the Software, and to permit persons to whom the Software is
+   furnished to do so, subject to the following conditions:
+
+   The above copyright notice and this permission notice shall be included in
+   all copies or substantial portions of the Software.
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+   SOFTWARE.
+
+2. Hardware design files  --  MIT License (same text as section 1)
+   Applies to: everything under hardware/ and the KiCad files, libraries
+   (TMR2615D symbol and footprint), schematics, board layouts, gerber zips,
+   bills of materials and placement files it contains, and schematics/.
+   You may build, modify and sell boards from these files. The sensor symbol
+   and footprint describe a part made by MDT; the part name and datasheet belong
+   to its maker. Nothing here has been certified (no FCC, CE or USB-IF testing).
+   The designs are provided as is. Check them yourself before ordering boards.
+
+3. Documentation, guides and images  --  Creative Commons Attribution 4.0
+   International (CC BY 4.0), https://creativecommons.org/licenses/by/4.0/
+   Applies to: README.md, everything under docs/, the Markdown documents under
+   stm32u5a5-keypad/docs/ and hardware/, and the PNG images under
+   hardware/images/. You may copy and adapt them, including commercially, if you
+   credit "Tyler Judkins" and say what you changed.
+   Third-party sources quoted or linked in the research guide keep their own
+   copyright; the links are references, not licensed content.
+
+4. Third-party code  --  keeps its own license
+   - ST HAL and LL drivers, CMSIS device files, USB device core and middleware
+     under stm32u5a5-keypad/firmware/Drivers and stm32u5a5-keypad/firmware/USB:
+     STMicroelectronics licenses (BSD-3-Clause or SLA0044 as stated in the
+     LICENSE.md and file headers in those folders) and Apache-2.0 for the Arm
+     CMSIS core headers (LICENSE.txt in that folder). Keep those notices.
+   - Files copied from the same ST packages inside future_work/ and archive/
+     carry the same ST license.
+   - The RP2040 proof-of-concept files in the top level (proofofconcept.c,
+     config.h, mcuconf.h, rules.mk, keyboard.json, keymaps/, mux_analog.*,
+     pio_uart.*) are written for the QMK firmware framework, which is licensed
+     GPL-2.0-or-later. Treat those files as GPL-2.0-or-later, not MIT, unless a
+     file says otherwise. The keymap file carries an SPDX line saying so.
+   - The BLE and ESB bridge sketches use Arduino and Nordic libraries under
+     their own licenses; follow the headers of those libraries.
+
+5. Reports, presentations and coursework  --  all rights reserved
+   Applies to: everything under reports/ (the .pptx, .pdf and .docx files and
+   the capstone deck source), including instructor feedback. These are
+   academic work for Central Connecticut State University. They are included
+   so the project history is complete. You may read them. Do not republish or
+   reuse them without permission. The instructor feedback document is not mine
+   to license and is included only as part of my own coursework record.
+
+6. Names, USB identifiers and trademarks
+   - The USB ID 0483:5710 used on the bench is STMicroelectronics' demonstration
+     identifier. It may not be used in a product you share or sell. Get your own
+     vendor ID (USB-IF membership) or a licensed product ID range first.
+   - "STM32", "ST", "Arm", "Cortex", "CMSIS", "KiCad", "QMK", "JLCPCB", "LCSC",
+     "MDT" and other names belong to their owners and are used only to describe
+     compatibility.
+   - I am not granting any trademark rights.
+
+7. Warranty and safety
+   Everything here comes with no warranty of any kind, including the hardware
+   files and the measured numbers in the guides. Measurements were taken on one
+   bench setup on the dates stated; results on other hardware may differ.
+
+8. Contributions
+   If you send a change, you agree it can be used under the terms of the section
+   it belongs to.
+
+This summary is written by the author and is not legal advice. If you need
+terms for a product you plan to sell, have a lawyer read them.
+
+Contact: via the GitHub profile livid05
