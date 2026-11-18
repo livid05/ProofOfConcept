@@ -1,0 +1,34 @@
+<section id="code2" data-transition="fade" style="background:#F4F2EC;color:#16202A;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:600;color:#17717A;text-transform:uppercase;letter-spacing:2px">4 · Technical documentation · Code (2 of 2)</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.1">Queue: never lose a release</h2>
+</div>
+<div style="display:flex;gap:40px;flex:1">
+<div style="flex:3;display:flex;flex-direction:column;gap:2px;background:#101C26;padding:40px;border-radius:16px;justify-content:center">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.45;color:#E7ECEF;white-space:nowrap">if (edge &amp;&amp; armed) {</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.45;color:#E7ECEF;white-space:nowrap">&#160;&#160;&#160;&#160;next = (head + 1) &amp; 15;</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.45;color:#E7ECEF;white-space:nowrap">&#160;&#160;&#160;&#160;if (next == tail) {</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.45;color:#F0A35E;white-space:nowrap">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;key_queue_overflow++;</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.45;color:#F0A35E;white-space:nowrap">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;head = tail = 0;</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.45;color:#F0A35E;white-space:nowrap">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;sync_pending = 1;</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.45;color:#E7ECEF;white-space:nowrap">&#160;&#160;&#160;&#160;} else {</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.45;color:#5CC4C9;white-space:nowrap">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;queue[head] = stable_pressed</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.45;color:#5CC4C9;white-space:nowrap">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;? KEY_HID_USAGE : 0;</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.45;color:#5CC4C9;white-space:nowrap">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;head = next;</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.45;color:#E7ECEF;white-space:nowrap">&#160;&#160;&#160;&#160;}</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.45;color:#E7ECEF;white-space:nowrap">}</p>
+</div>
+<div style="flex:2;display:flex;flex-direction:column;gap:24px;justify-content:center">
+<h3 style="font-size:40px;font-weight:700;line-height:1.2">What it does</h3>
+<ul style="font-size:30px;line-height:1.4;color:#3B4754">
+<li>A press stores HID usage 0x04 (the A key); a release stores 0.</li>
+<li>The 16-slot ring holds 15 events while USB is busy.</li>
+<li>If it ever fills, firmware resets and sends all-keys-up, so no key sticks.</li>
+<li>The tail advances only after the USB report is accepted.</li>
+</ul>
+<p style="font-size:24px;color:#5E6A75">Source: key_switch.c (one-key version; key_matrix.c queues whole reports the same way)</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5E6A75">Tyler Judkins · Capstone · October 22, 2026 · 14</p>
+<aside>Excerpt of the enqueue logic in key_switch.c, reformatted to fit. Key point: dropping a release report would leave a key stuck down on the host, so the design prefers a safe reset over silent loss. The overflow counter should stay at zero in normal use.</aside>
+</section>

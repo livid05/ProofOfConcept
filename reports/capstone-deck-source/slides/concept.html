@@ -1,0 +1,31 @@
+<section id="concept" data-transition="fade" style="background:#F4F2EC;color:#16202A;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:600;color:#17717A;text-transform:uppercase;letter-spacing:2px">1 · The idea</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.1">One sensor curve, a different trigger point for every key</h2>
+</div>
+<div style="display:flex;gap:48px;flex:1">
+<div style="position:relative;width:960px;height:600px;background:#FBFAF6;border:1px solid #DAD6CB;border-radius:16px">
+<svg aria-label="Illustrative chart: sensor signal rises smoothly with key travel, with an early trigger point for key A and a deeper one for key B" width="960" height="600" viewBox="0 0 960 600" xmlns="http://www.w3.org/2000/svg">
+<path d="M90 60 V520 H930" stroke="#3B4754" stroke-width="3" fill="none"/>
+<path d="M314 70 V520" stroke="#17717A" stroke-width="3" stroke-dasharray="10 8" fill="none"/>
+<path d="M664 70 V520" stroke="#A24B0B" stroke-width="3" stroke-dasharray="10 8" fill="none"/>
+<path d="M90 500 C300 495 450 470 560 340 S800 130 920 100" stroke="#3B4754" stroke-width="6" fill="none"/>
+<circle cx="314" cy="479" r="13" fill="#17717A"/>
+<circle cx="664" cy="237" r="13" fill="#A24B0B"/>
+</svg>
+<p style="position:absolute;left:100px;top:14px;width:300px;font-size:24px;color:#5E6A75">Sensor signal</p>
+<p style="position:absolute;left:326px;top:72px;width:300px;font-size:26px;font-weight:700;color:#17717A">Key A: fires early</p>
+<p style="position:absolute;left:676px;top:72px;width:270px;font-size:26px;font-weight:700;color:#A24B0B">Key B: fires deep</p>
+<p style="position:absolute;left:740px;top:534px;width:190px;font-size:26px;color:#5E6A75;text-align:right">Key travel →</p>
+<p style="position:absolute;left:100px;top:550px;width:560px;font-size:24px;color:#5E6A75">Illustrative curve, not measured data</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:28px;justify-content:center">
+<div style="display:flex;gap:20px;align-items:flex-start"><p style="font-size:44px;font-weight:700;color:#17717A;width:48px">1</p><div style="flex:1"><p style="font-size:30px;line-height:1.35;color:#3B4754">A magnet in the switch stem moves down with the key.</p></div></div>
+<div style="display:flex;gap:20px;align-items:flex-start"><p style="font-size:44px;font-weight:700;color:#17717A;width:48px">2</p><div style="flex:1"><p style="font-size:30px;line-height:1.35;color:#3B4754">The TMR sensor’s output changes smoothly with travel.</p></div></div>
+<div style="display:flex;gap:20px;align-items:flex-start"><p style="font-size:44px;font-weight:700;color:#17717A;width:48px">3</p><div style="flex:1"><p style="font-size:30px;line-height:1.35;color:#3B4754">Firmware compares it to a per-key threshold and sends the keypress.</p></div></div>
+<p style="font-size:26px;line-height:1.4;color:#5E6A75">A mechanical switch fires at one fixed point, about 2 mm.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5E6A75">Tyler Judkins · Capstone · October 22, 2026 · 3</p>
+<aside>This chart is a concept sketch, not data. The real sensor curve will be measured during TMR characterization. The point: one analog signal lets firmware choose a different trigger depth for each key.</aside>
+</section>

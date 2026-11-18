@@ -1,0 +1,43 @@
+<section id="wiring" data-transition="fade" style="background:#F4F2EC;color:#16202A;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:600;color:#17717A;text-transform:uppercase;letter-spacing:2px">4 · Technical documentation · Wiring</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.1">Four wires read one switch</h2>
+</div>
+<div style="display:flex;gap:40px;flex:1">
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<table style="font-size:26px;color:#16202A">
+<tr><th style="width:30%">Signal</th><th style="width:30%">Numpad J1</th><th style="width:40%">Devboard</th></tr>
+<tr><td style="width:30%">ROW1</td><td style="width:30%">Pin 5</td><td style="width:40%">PC0 (J2 pin 8)</td></tr>
+<tr><td style="width:30%">COL1</td><td style="width:30%">Pin 27</td><td style="width:40%">PB4 (J2 pin 18)</td></tr>
+<tr><td style="width:30%">GND</td><td style="width:30%">Pin 1</td><td style="width:40%">J2 pin 26</td></tr>
+<tr><td style="width:30%">3.3 V</td><td style="width:30%">Pin 25</td><td style="width:40%">J2 pin 1</td></tr>
+</table>
+<p style="font-size:26px;line-height:1.4;color:#5E6A75">This row and column cross at switch MX2. PA5 drives the red status LED. Columns are never driven high.</p>
+</div>
+<div style="position:relative;width:810px;height:530px;background:#101C26;border-radius:16px">
+<svg aria-label="Schematic: 3.3 V through an internal pull-up to pin PB4, then through switch MX2 and a diode to row ROW1 on PC0, held low at ground" width="810" height="530" viewBox="0 0 810 530" xmlns="http://www.w3.org/2000/svg">
+<path d="M170 50 H330 M250 50 V80 M250 150 V280" stroke="#E7ECEF" stroke-width="4" fill="none"/>
+<rect x="230" y="80" width="40" height="70" fill="none" stroke="#E7ECEF" stroke-width="4"/>
+<circle cx="250" cy="210" r="7" fill="#5CC4C9"/>
+<path d="M250 210 H460" stroke="#5CC4C9" stroke-width="4" fill="none"/>
+<circle cx="250" cy="280" r="7" fill="none" stroke="#E7ECEF" stroke-width="4"/>
+<circle cx="250" cy="340" r="7" fill="none" stroke="#E7ECEF" stroke-width="4"/>
+<path d="M250 340 L282 290" stroke="#E7ECEF" stroke-width="4" fill="none"/>
+<path d="M250 347 V380 M232 380 H268 L250 410 Z M232 412 H268 M250 412 V450" stroke="#E7ECEF" stroke-width="4" fill="none"/>
+<circle cx="250" cy="450" r="7" fill="#F0A35E"/>
+<path d="M250 450 H460 M250 450 V478 M214 478 H286 M228 491 H272 M240 504 H260" stroke="#F0A35E" stroke-width="4" fill="none"/>
+</svg>
+<p style="position:absolute;left:344px;top:26px;width:200px;font-size:26px;font-weight:700;color:#E7ECEF">3.3 V</p>
+<p style="position:absolute;left:290px;top:96px;width:400px;font-size:24px;color:#C9D3DA">Internal pull-up</p>
+<p style="position:absolute;left:470px;top:176px;width:320px;font-size:26px;font-weight:700;color:#5CC4C9">PB4 (COL1)</p>
+<p style="position:absolute;left:470px;top:212px;width:320px;font-size:24px;color:#C9D3DA">High until pressed</p>
+<p style="position:absolute;left:304px;top:300px;width:300px;font-size:26px;font-weight:700;color:#E7ECEF">MX2 switch</p>
+<p style="position:absolute;left:290px;top:384px;width:300px;font-size:24px;color:#C9D3DA">Matrix diode</p>
+<p style="position:absolute;left:470px;top:416px;width:320px;font-size:26px;font-weight:700;color:#F0A35E">ROW1 (PC0)</p>
+<p style="position:absolute;left:470px;top:452px;width:320px;font-size:24px;color:#C9D3DA">Open-drain, held low</p>
+<p style="position:absolute;left:304px;top:484px;width:200px;font-size:24px;color:#C9D3DA">GND</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5E6A75">Tyler Judkins · Capstone · October 22, 2026 · 10</p>
+<aside>Pin numbers come from the KiCad RevK and RevE files. Pressing MX2 completes the path from the pulled-up column through the switch and diode to the row, which sits at ground, so PB4 reads low. Firmware treats low as pressed.</aside>
+</section>

@@ -1,0 +1,32 @@
+<section id="code1" data-transition="fade" style="background:#F4F2EC;color:#16202A;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:600;color:#17717A;text-transform:uppercase;letter-spacing:2px">4 · Technical documentation · Code (1 of 2)</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.1">Debounce: fast press, filtered release</h2>
+</div>
+<div style="display:flex;gap:40px;flex:1">
+<div style="flex:3;display:flex;flex-direction:column;gap:4px;background:#101C26;padding:40px;border-radius:16px;justify-content:center">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#E7ECEF;white-space:nowrap">if (raw_pressed != stable_pressed &amp;&amp;</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#E7ECEF;white-space:nowrap">&#160;&#160;&#160;&#160;((KEY_EAGER_PRESS &amp;&amp; raw_pressed) ||</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#E7ECEF;white-space:nowrap">&#160;&#160;&#160;&#160;&#160;(now_us - raw_changed_us)</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#E7ECEF;white-space:nowrap">&#160;&#160;&#160;&#160;&#160;&#160;&gt;= KEY_DEBOUNCE_US))</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#E7ECEF;white-space:nowrap">{</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#5CC4C9;white-space:nowrap">&#160;&#160;&#160;&#160;stable_pressed = raw_pressed;</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#5CC4C9;white-space:nowrap">&#160;&#160;&#160;&#160;edge = 1;</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#E7ECEF;white-space:nowrap">&#160;&#160;&#160;&#160;if (stable_pressed)</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#E7ECEF;white-space:nowrap">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;key_press_count++;</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:26px;line-height:1.5;color:#E7ECEF;white-space:nowrap">}</p>
+</div>
+<div style="flex:2;display:flex;flex-direction:column;gap:24px;justify-content:center">
+<h3 style="font-size:40px;font-weight:700;line-height:1.2">What it does</h3>
+<ul style="font-size:30px;line-height:1.4;color:#3B4754">
+<li>With eager press on, the first low sample is a press.</li>
+<li>Release needs 10 ms (10,000 µs) of continuous high.</li>
+<li>Bounce while held cannot create a second press.</li>
+<li>Setting eager press to 0 filters both edges if noise appears.</li>
+</ul>
+<p style="font-size:24px;color:#5E6A75">Source: key_switch.c (one-key version; key_matrix.c applies the same rules to each key)</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5E6A75">Tyler Judkins · Capstone · October 22, 2026 · 13</p>
+<aside>Excerpt of the state change in key_switch.c, reformatted to fit. The trade-off: eager press lowers latency but a noise pulse could count as a press, so the conservative mode stays available in board_config.h.</aside>
+</section>
