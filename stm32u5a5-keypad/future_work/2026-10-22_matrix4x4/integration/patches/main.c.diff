@@ -1,0 +1,47 @@
+--- firmware/Core/Src/main.c	2026-10-20 17:21:39.933107600 -0400
++++ future_work/2026-10-22_matrix4x4/integration/proposed/firmware/Core/Src/main.c	2026-10-22 12:15:53.947014200 -0400
+@@ -3,6 +3,7 @@
+ #include "board_config.h"
+ #include "key_clock.h"
+ #include "keyboard.h"
++#include "key_matrix.h"
+ /* The internal USB HS PHY needs the external 16 MHz crystal as its reference.
+  * HSE / PLLM * PLLN / PLLR = 16 MHz / 1 * 20 / 2 = 160 MHz CPU/AHB.
+  * VOS1 and four flash wait states support this speed. This is the LDO part;
+@@ -39,10 +40,7 @@
+     if (HAL_RCC_ClockConfig(&c, FLASH_LATENCY_4) != HAL_OK)
+         Error_Handler();
+ }
+-/* No matrix scanning is needed yet: select ROW1 continuously and read COL1.
+- * The other rows are released (open-drain HIGH = high impedance), preventing
+- * output contention if they are connected during later matrix expansion.
+- */
++/* LED pin plus the 4 x 4 key matrix pins (Matrix_GpioInit). */
+ static void Board_Init(void)
+ {
+     GPIO_InitTypeDef g = {0};
+@@ -54,21 +52,10 @@
+     g.Mode = GPIO_MODE_OUTPUT_PP;
+     g.Speed = GPIO_SPEED_FREQ_LOW;
+     HAL_GPIO_Init(STATUS_LED_PORT, &g);
+-    /* Release every row first; only ROW1 will be driven low. */
+-    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3, GPIO_PIN_SET);
+-    g.Pin = GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3;
+-    g.Mode = GPIO_MODE_OUTPUT_OD;
+-    HAL_GPIO_Init(GPIOC, &g);
+-    /* Initialize the selected row too if its mapping is changed in the header.
+-     * Port clocks A/B/C are enabled above; add another clock if using D/F/etc.
++    /* Rows PC0..PC3 (open-drain, released) and columns PB4..PB7 (pull-up
++     * inputs). The scanner pulls one row low at a time; see matrix_config.h.
+      */
+-    g.Pin = KEY_ROW_PIN;
+-    HAL_GPIO_Init(KEY_ROW_PORT, &g);
+-    g.Pin = KEY_COL_PIN;
+-    g.Mode = GPIO_MODE_INPUT;
+-    g.Pull = GPIO_PULLUP;
+-    HAL_GPIO_Init(KEY_COL_PORT, &g);
+-    HAL_GPIO_WritePin(KEY_ROW_PORT, KEY_ROW_PIN, GPIO_PIN_RESET);
++    Matrix_GpioInit();
+ }
+ /* HAL_Init installs the 1 ms SysTick timebase. USB transactions are handled
+  * in OTG_HS_IRQHandler; the foreground loop samples and debounces the switch.

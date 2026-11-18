@@ -1,0 +1,29 @@
+{
+  "C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json",
+  "files.associations": {
+    "*.h": "c"
+  },
+  "files.exclude": {
+    "**/.git": true
+  },
+  "VsCodeTaskButtons.tasks": [
+    {
+      "label": "$(tools) Build",
+      "task": "Build keypad",
+      "alignment": "left",
+      "tooltip": "Build keypad firmware"
+    },
+    {
+      "label": "$(plug) Flash USB",
+      "task": "Flash keypad (USB DFU)",
+      "alignment": "left",
+      "tooltip": "Flash existing firmware through USB DFU; enter BOOT/RST first"
+    },
+    {
+      "label": "$(rocket) Build + Flash USB",
+      "task": "Build + Flash keypad (USB DFU)",
+      "alignment": "left",
+      "tooltip": "Build, then flash and verify through USB DFU; enter BOOT/RST first"
+    }
+  ]
+}
