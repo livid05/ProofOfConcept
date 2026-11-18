@@ -1,0 +1,45 @@
+<section id="verification" data-transition="fade" style="background:#F4F2EC;color:#16202A;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:600;color:#17717A;text-transform:uppercase;letter-spacing:2px">5 · Evaluation · Evidence so far</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.1">What has been verified, and how</h2>
+</div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#101C26;color:#F4F2EC;padding:36px;border-radius:16px">
+<p style="font-size:88px;font-weight:700;line-height:1;color:#5CC4C9">0</p>
+<p style="font-size:30px;line-height:1.3;color:#C9D3DA">compiler warnings, with warnings treated as errors</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#101C26;color:#F4F2EC;padding:36px;border-radius:16px">
+<p style="font-size:88px;font-weight:700;line-height:1;color:#5CC4C9">13</p>
+<p style="font-size:30px;line-height:1.3;color:#C9D3DA">logic test scenarios on the real matrix code</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#101C26;color:#F4F2EC;padding:36px;border-radius:16px">
+<p style="font-size:88px;font-weight:700;line-height:1;color:#5CC4C9">22.4 KB</p>
+<p style="font-size:30px;line-height:1.3;color:#C9D3DA">firmware image, out of 4 MB of flash</p>
+</div>
+</div>
+<div style="display:flex;gap:32px;flex:1">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FBFAF6;padding:32px;border:1px solid #DAD6CB;border-radius:16px">
+<h3 style="font-size:32px;font-weight:700;line-height:1.2">Simulated test cases</h3>
+<div style="display:flex;flex-wrap:wrap;gap:10px">
+<p style="font-size:24px;background:#DDEBE1;color:#14502B;padding:8px 16px;border-radius:999px">Eager press</p>
+<p style="font-size:24px;background:#DDEBE1;color:#14502B;padding:8px 16px;border-radius:999px">Bounce ignored</p>
+<p style="font-size:24px;background:#DDEBE1;color:#14502B;padding:8px 16px;border-radius:999px">Stable release</p>
+<p style="font-size:24px;background:#DDEBE1;color:#14502B;padding:8px 16px;border-radius:999px">USB busy order</p>
+<p style="font-size:24px;background:#DDEBE1;color:#14502B;padding:8px 16px;border-radius:999px">Held at plug-in</p>
+<p style="font-size:24px;background:#DDEBE1;color:#14502B;padding:8px 16px;border-radius:999px">Overflow recovery</p>
+<p style="font-size:24px;background:#DDEBE1;color:#14502B;padding:8px 16px;border-radius:999px">Timer rollover</p>
+<p style="font-size:24px;background:#DDEBE1;color:#14502B;padding:8px 16px;border-radius:999px">8,000 scans per second</p>
+<p style="font-size:24px;background:#DDEBE1;color:#14502B;padding:8px 16px;border-radius:999px">All 15 keys</p>
+<p style="font-size:24px;background:#DDEBE1;color:#14502B;padding:8px 16px;border-radius:999px">Chords</p>
+<p style="font-size:24px;background:#DDEBE1;color:#14502B;padding:8px 16px;border-radius:999px">Six-key limit</p>
+<p style="font-size:24px;background:#DDEBE1;color:#14502B;padding:8px 16px;border-radius:999px">65,536 pin patterns</p>
+</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FBFAF6;padding:32px;border:1px solid #DAD6CB;border-radius:16px">
+<h3 style="font-size:32px;font-weight:700;line-height:1.2">Real hardware</h3>
+<p style="font-size:26px;line-height:1.4;color:#3B4754">Typing, repeat and release on the earlier 1K build, plus USBView high speed. The 8K USB rate is now measured (next slide). The full 4 × 4 matrix is still being bench-tested.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5E6A75">Tyler Judkins · Capstone · October 22, 2026 · 17</p>
+<aside>Numbers come from docs/VALIDATION.md: Arm GCC 14.3.1 with -Werror, 21,640 byte image, eight host test scenarios. Keep the distinction clear between software checks and physical observation.</aside>
+</section>

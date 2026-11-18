@@ -1,0 +1,226 @@
+(footprint "SW_MX_TMR2615D_1u"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "MDT TMR2615D (DFN3L 2x2x0.55 mm) TMR linear sensor. Pin 1 VOUT, pin 2 VDD, pin 3 GND (large pad). Land from datasheet TMR2615x-AAC Figure 7; toes extended 0.4 mm for hand soldering. Sensing element 0.49 mm from the pin-3 edge, sensing axis in-plane along X (parallel to the pin 1-2 edge). Switch-centred version for the Numpad (switch holes come from the hot-swap socket footprint); package centre offset (-3.089, 1.51), pin-3 edge facing the switch centre line.")
+	(tags "TMR2615D MX switch magnetic sensor numpad")
+	(property "Reference" "U**"
+		(at -3.1 3.6 0)
+		(layer "F.SilkS")
+		(uuid "1b8e4323-b701-4018-a746-5e530bc5f3fd")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Value" "TMR2615D"
+		(at 0 4.5 0)
+		(layer "F.Fab")
+		(uuid "eaf1272d-7db4-4d14-80d8-6bb24ec2ae29")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Datasheet" "https://www.dowaytech.com/en/res/202408/21/3fc42854d4f23bec.pdf"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "d603ca35-d8b5-422f-b92b-2a45b8b73bec")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Description" "MDT TMR2615D (DFN3L 2x2x0.55 mm) TMR linear sensor. Pin 1 VOUT, pin 2 VDD, pin 3 GND (large pad). Land from datasheet TMR2615x-AAC Figure 7; toes extended 0.4 mm for hand soldering. Sensing element 0.49 mm from the pin-3 edge, sensing axis in-plane along X (parallel to the pin 1-2 edge). Switch-centred version for the Numpad (switch holes come from the hot-swap socket footprint); package centre offset (-3.089, 1.51), pin-3 edge facing the switch centre line."
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "d89ed6ea-80cb-4739-a5ae-0e19cc366d5a")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(attr smd)
+	(fp_circle
+		(center -4.239 2.96)
+		(end -4.139 2.96)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(fill yes)
+		(layer "F.SilkS")
+		(uuid "12e6e30d-c3ab-4e4f-8fce-6fb966b8caf9")
+	)
+	(fp_line
+		(start -4.389 -0.14)
+		(end -1.789 -0.14)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "804dbc31-04d4-40d5-ba63-964b6c777b24")
+	)
+	(fp_line
+		(start -4.389 3.21)
+		(end -4.389 -0.14)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "0f4d2656-509b-4a23-b2e2-0d04cc4d8a46")
+	)
+	(fp_line
+		(start -1.789 -0.14)
+		(end -1.789 3.21)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "b8b98668-7d86-4a76-94c6-e0cf8f67231a")
+	)
+	(fp_line
+		(start -1.789 3.21)
+		(end -4.389 3.21)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "2e6269cf-3a8c-48d7-99f7-425a6509b0f3")
+	)
+	(fp_line
+		(start -4.089 0.51)
+		(end -2.089 0.51)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "ec0cc07d-e9a7-46ae-af23-6d9fa3523d77")
+	)
+	(fp_line
+		(start -4.089 2.21)
+		(end -4.089 0.51)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "a0a458a8-d5e5-40d9-a71d-f74c10a25419")
+	)
+	(fp_line
+		(start -3.789 2.51)
+		(end -4.089 2.21)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "e20928c0-5a0e-4c32-92c0-33f8d1ae6c97")
+	)
+	(fp_line
+		(start -3.689 1)
+		(end -2.489 1)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "bc90eff2-31a9-4ed7-b16c-12d4c0382a62")
+	)
+	(fp_line
+		(start -2.489 1)
+		(end -2.639 0.9)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "c34129c9-6781-4426-b115-58299373e76c")
+	)
+	(fp_line
+		(start -2.489 1)
+		(end -2.639 1.1)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "d1cf2c39-ee71-427b-9da7-e87f4dc48256")
+	)
+	(fp_line
+		(start -2.089 0.51)
+		(end -2.089 2.51)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "ae59f7b7-8dd1-4137-9737-21125fe694fa")
+	)
+	(fp_line
+		(start -2.089 2.51)
+		(end -3.789 2.51)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "12f93cb4-993c-46ee-a1b2-0b8c0b42e975")
+	)
+	(fp_circle
+		(center -3.089 1)
+		(end -2.969 1)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "40f5c0dc-8351-4a40-8d45-92ee54768faf")
+	)
+	(pad "1" smd roundrect
+		(at -3.739 2.51)
+		(size 0.35 0.8)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.15)
+		(uuid "e23a8782-93db-4471-b30a-420a5d0ef63d")
+	)
+	(pad "2" smd roundrect
+		(at -2.439 2.51)
+		(size 0.35 0.8)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.15)
+		(uuid "3c419d51-6e9a-4ece-a2a8-fa5b2a89a485")
+	)
+	(pad "3" smd roundrect
+		(at -3.089 0.485)
+		(size 0.4 0.75)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.15)
+		(uuid "0f371cae-f769-45ff-b643-a0110320a70b")
+	)
+	(pad "3" smd roundrect
+		(at -3.089 1.285)
+		(size 1.5 0.95)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.1)
+		(uuid "4a018dbe-2c76-436b-a6b5-4f0a16645fd6")
+	)
+	(embedded_fonts no)
+)

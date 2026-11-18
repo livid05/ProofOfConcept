@@ -1,0 +1,20 @@
+<section id="demo" data-transition="fade" style="background:#F4F2EC;color:#16202A;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:600;color:#17717A;text-transform:uppercase;letter-spacing:2px">3 · Demonstration</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.1">Typing works over USB, and 8K is measured</h2>
+</div>
+<table style="font-size:26px;color:#16202A">
+<tr><th style="width:36%">Check</th><th style="width:20%">Result</th><th style="width:44%">Evidence</th></tr>
+<tr><td style="width:36%">Windows sees a keyboard</td><td style="width:20%;color:#1B6B3A">Confirmed</td><td style="width:44%">USBView: “Keypad U5A5 - MX2”</td></tr>
+<tr><td style="width:36%">USB high speed</td><td style="width:20%;color:#1B6B3A">Confirmed</td><td style="width:44%">Bus speed High, bInterval 0x04</td></tr>
+<tr><td style="width:36%">Tap MX2 types “a”</td><td style="width:20%;color:#1B6B3A">Confirmed</td><td style="width:44%">Tested in Notepad</td></tr>
+<tr><td style="width:36%">Hold repeats, release stops</td><td style="width:20%;color:#1B6B3A">Confirmed</td><td style="width:44%">Tested in Notepad</td></tr>
+<tr><td style="width:36%">8K USB report rate</td><td style="width:20%;color:#1B6B3A">Confirmed</td><td style="width:44%">7,999 reports/s, rate-test image</td></tr>
+<tr><td style="width:36%">4 × 4 matrix, 15 keys</td><td style="width:20%;color:#A24B0B">Retest pending</td><td style="width:44%">All keys typed; cols 3/4 swapped, now fixed</td></tr>
+<tr><td style="width:36%">Keyboard image bInterval 0x01</td><td style="width:20%;color:#A24B0B">Pending</td><td style="width:44%">USBView check after reflash</td></tr>
+<tr><td style="width:36%">20-tap, replug, 5-min idle</td><td style="width:20%;color:#A24B0B">Pending</td><td style="width:44%">Acceptance list prepared</td></tr>
+</table>
+<p style="font-size:24px;line-height:1.4;color:#5E6A75">Typing and High Speed results are from the earlier 1K single-key build. The 8K rate came from a separate test image using the same USB endpoint settings.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5E6A75">Tyler Judkins · Capstone · October 22, 2026 · 8</p>
+<aside>Live demo cue: open Notepad and press the keys left to right, top to bottom, expecting a through o. The first matrix run typed every key but swapped columns 3 and 4; that is fixed in firmware and still needs the retest. The 8K result is the measured 7,999 reports per second on the next evaluation slide; show USBView with bInterval 0x01 on the keyboard image if you have it.</aside>
+</section>

@@ -1,0 +1,54 @@
+--- firmware/Core/Src/usb_keyboard.c	2026-10-20 17:21:39.946611900 -0400
++++ future_work/2026-10-22_matrix4x4/integration/proposed/firmware/Core/Src/usb_keyboard.c	2026-10-22 12:15:53.813310100 -0400
+@@ -18,7 +18,7 @@
+  * byte 0 = eight modifier bits (Ctrl/Shift/Alt/GUI), byte 1 = reserved,
+  * bytes 2..7 = up to six simultaneously held key usages; zero = no key.
+  * Output report = one byte containing host keyboard LED states.
+- * This implementation uses only the first of those six key positions.
++ * The matrix firmware fills all six key positions (first key pressed first).
+  */
+ static uint8_t report_descriptor[] = {
+     0x05, 0x01, 0x09, 0x06, 0xa1, 0x01, 0x05, 0x07, 0x19, 0xe0, 0x29, 0xe7, 0x15, 0x00, 0x25, 0x01,
+@@ -198,14 +198,13 @@
+  * Return 1 only after the USB layer accepts the report. Busy returns 0.
+  * Report payload stays in tx; never transmit a pointer to a local array.
+  */
+-uint8_t Keyboard_Send(uint8_t usage)
++uint8_t Keyboard_SendReport(const uint8_t report[8])
+ {
+     if (usb_device.dev_state != USBD_STATE_CONFIGURED || keyboard_busy)
+         return 0;
+     uint8_t old[8];
+     memcpy(old, tx, 8);
+-    memset(tx, 0, 8);
+-    tx[2] = usage;
++    memcpy(tx, report, 8); /* copy into the persistent buffer; report may be a temporary */
+     keyboard_busy = 1;
+     if (USBD_LL_Transmit(&usb_device, 0x81, tx, 8) != USBD_OK)
+     {
+@@ -216,11 +215,23 @@
+     last_report_ms = HAL_GetTick();
+     return 1;
+ }
+-/* Called under the same brief interrupt mask as event transmission. */
++/* Single-key convenience wrapper kept for the one-key firmware's API. */
++uint8_t Keyboard_Send(uint8_t usage)
++{
++    uint8_t report[8] = {0, 0, usage, 0, 0, 0, 0, 0};
++    return Keyboard_SendReport(report);
++}
++/* Called under the same brief interrupt mask as event transmission.
++ * Repeats the whole last report (all held keys), not just one key.
++ */
+ void Keyboard_Idle(void)
+ {
+     if (idle && !keyboard_busy && (uint32_t)(HAL_GetTick() - last_report_ms) >= (uint32_t)idle * 4)
+-        Keyboard_Send(tx[2]);
++    {
++        uint8_t again[8];
++        memcpy(again, tx, 8);
++        Keyboard_SendReport(again);
++    }
+ }
+ /* ST demonstration VID/PID: prototype only, obtain an assigned pair for release. */
+ static uint8_t device[] = {18, 1, 0, 2, 0, 0, 0, 64, 0x83, 0x04, 0x10, 0x57, 0, 1, 1, 2, 3, 1};

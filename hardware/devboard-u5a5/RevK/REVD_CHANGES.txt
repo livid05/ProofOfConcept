@@ -1,0 +1,42 @@
+U575 DEVBOARD - REV D  (Rev C + tail stabilizer pins)
+=====================================================
+
+WHAT CHANGED FROM REV C
+ - Added two stabilizer pins at the far end of the tail. They are mounted on the bottom like J2/J3,
+   so they plug into the breadboard.
+   * J9 (left) = GND, in the J3 column
+   * J10 (right) = NRST, in the J2 column
+   * Both sit exactly 11 pitches (27.94 mm) above header pin 1, on the same 0.1" grid,
+     so they drop into the same breadboard columns.
+   * With these, the tail is supported just above J8. Pushing a ribbon onto J8 or a cable into
+     J5/J6 now loads the breadboard, not the header solder joints.
+ - Removed J4 (the face-up NRST test pin). NRST is now reachable three ways:
+   * J10: the breadboard row, for a Dupont wire from an ST-Link V2 clone
+     ("Connect Under Reset" works)
+   * J7 pin 10: the 10-pin SWD cable
+   * SW1: the RST button
+ - Back silkscreen now reads REV D and lists the stabilizer pins. Front labels: "G" and "RST"
+   next to the pins.
+
+ASSEMBLY / USE
+ - Solder J9/J10 as single breakaway header pins, with the black plastic on the BOTTOM, like J2/J3.
+   The plastic spacer resting on the breadboard is what actually holds the tail up.
+ - The board now spans 37 breadboard rows (J10/J9 row to J2/J3 pin 26), so use a full-size
+   830-point breadboard (63 rows). A half-size (30-row) board is too short.
+ - Nothing else plugged into the J9 breadboard row is floating: it is GND. Anything in the J10 row
+   is on NRST, so leave that row free unless you are wiring a debugger's reset.
+
+EVERYTHING ELSE IS UNCHANGED FROM REV C
+ - Same on-board 16-channel mux and J8 input, UART, SWD and USB section.
+ - USB pairs: no vias, 45-degree bends, solid GND plane underneath.
+ - See the Rev C notes for the J8 pinout, cables and noise checklist.
+
+CHECKS
+ - DRC with schematic parity: 0 errors, 0 unconnected, 0 parity issues.
+   The only warning is the old Y2 footprint-library note.
+ - ERC: 0 errors, 0 warnings.
+
+PRODUCTION (production/)
+ - Capstone_Keyboard_Design_RevD_gerbers.zip, bom.csv, positions.csv
+ - Hand-solder these (not in the BOM): J2, J3, J8, J9, J10.
+ - Order with the JLC04161H-3313 stackup and impedance control.

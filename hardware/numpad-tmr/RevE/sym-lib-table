@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "TMR2615D")(type "KiCad")(uri "${KIPRJMOD}/TMR2615D.kicad_sym")(options "")(descr "MDT TMR2615D, D-package pinout"))
+)

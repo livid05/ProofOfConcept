@@ -1,0 +1,123 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "VsCodeTaskButtons.tasks": [
+      {
+        "label": "$(tools) Build",
+        "task": "Build keypad",
+        "alignment": "left",
+        "tooltip": "Build keypad firmware"
+      },
+      {
+        "label": "$(plug) Flash USB",
+        "task": "Flash keypad (USB DFU)",
+        "alignment": "left",
+        "tooltip": "Flash existing firmware through USB DFU; enter BOOT/RST first"
+      },
+      {
+        "label": "$(rocket) Build + Flash USB",
+        "task": "Build + Flash keypad (USB DFU)",
+        "alignment": "left",
+        "tooltip": "Build, then flash and verify through USB DFU; enter BOOT/RST first"
+      },
+      {
+        "label": "$(beaker) TMR Build + Flash",
+        "task": "Build + Flash TMR test (USB DFU)",
+        "alignment": "left",
+        "tooltip": "Build the TMR sensor test and flash it over USB DFU; enter BOOT/RST first"
+      },
+      {
+        "label": "$(terminal) TMR Console",
+        "task": "TMR test console",
+        "alignment": "left",
+        "tooltip": "Open the TMR test console (COM port)"
+      }
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Build TMR test",
+        "type": "shell",
+        "command": "powershell",
+        "args": [
+          "-NoProfile",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-File",
+          "${workspaceFolder}/future_work/2026-11-18_tmr_diag/tools/build-tmr-diag.ps1"
+        ],
+        "problemMatcher": [
+          "$gcc"
+        ],
+        "detail": "Build the TMR sensor test image (future_work/2026-11-18_tmr_diag). Does not touch build/ or the keyboard firmware."
+      },
+      {
+        "label": "Flash TMR test (USB DFU)",
+        "type": "process",
+        "command": "powershell",
+        "args": [
+          "-NoProfile",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-File",
+          "${workspaceFolder}/future_work/2026-11-18_tmr_diag/tools/flash-tmr-diag-usb.ps1"
+        ],
+        "options": {
+          "cwd": "${workspaceFolder}"
+        },
+        "problemMatcher": [],
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated",
+          "clear": true
+        },
+        "runOptions": {
+          "instanceLimit": 1
+        },
+        "detail": "Flash the TMR test image over USB DFU; enter BOOT/RST first."
+      },
+      {
+        "label": "Build + Flash TMR test (USB DFU)",
+        "dependsOrder": "sequence",
+        "dependsOn": [
+          "Build TMR test",
+          "Flash TMR test (USB DFU)"
+        ],
+        "problemMatcher": [],
+        "runOptions": {
+          "instanceLimit": 1
+        },
+        "detail": "Build the TMR test, then flash and verify it over USB DFU."
+      },
+      {
+        "label": "TMR test console",
+        "type": "process",
+        "command": "powershell",
+        "args": [
+          "-NoProfile",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-File",
+          "${workspaceFolder}/future_work/2026-11-18_tmr_diag/tools/tmr-console.ps1"
+        ],
+        "problemMatcher": [],
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated",
+          "focus": true,
+          "clear": true
+        },
+        "runOptions": {
+          "instanceLimit": 1
+        },
+        "detail": "Open the TMR test board's COM port and show its output."
+      }
+    ]
+  }
+}
