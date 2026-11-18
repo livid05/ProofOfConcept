@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "TMR2615D")(type "KiCad")(uri "${KIPRJMOD}/TMR2615D.pretty")(options "")(descr "TMR2615D DFN3L 2x2 land (datasheet Fig. 7)"))
+)

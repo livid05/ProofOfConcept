@@ -1,0 +1,235 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "3461a5a1-8d1f-495d-8027-8e6f2b41d428")
+	(paper "A4")
+	(title_block
+		(title "TriMode60 - Top")
+		(date "2026-09-23")
+		(rev "A")
+		(company "Tyler - CET 497 Capstone")
+		(comment 1 "TriMode60: tri-mode (USB HS / BLE / 2.4 GHz) 60% magnetic + mechanical keyboard")
+		(comment 2 "Review before ordering")
+	)
+	(lib_symbols)
+	(text "TriMode60 - tri-mode 60% keyboard (GH60 / ANSI 61 keys)\nMagnetic (TMR2615D) + mechanical (Kailh hot-swap) at every key, per-key RGB, 1S LiPo, USB-C HS 8 kHz, BLE + 2.4 GHz (nRF52840).\nSheets: Power | MCU (STM32U595) | Radio (BMD-340) | Keys (61 keys, 8 muxes)"
+		(exclude_from_sim no)
+		(at 30.48 86.36 0)
+		(effects
+			(font
+				(size 2 2)
+			)
+			(justify left top)
+		)
+		(uuid "b21383da-212f-4f99-9353-a8878f1a1d04")
+	)
+	(sheet
+		(at 152.4 40.64)
+		(size 45.72 25.4)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "0b34dbcb-0a7b-4f0f-bf2f-cb8dd715dc53")
+		(property "Sheetname" "Radio"
+			(at 152.4 39.9288 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "TriMode60_RevE/radio.kicad_sch"
+			(at 152.4 66.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "TriMode60"
+				(path "/3461a5a1-8d1f-495d-8027-8e6f2b41d428"
+					(page "4")
+				)
+			)
+			(project ""
+				(path "/1fd9de04-ba5e-42a5-88b2-639f8a2ed978"
+					(page "#")
+				)
+			)
+			(project "Capstone Keyboard Design"
+				(path "/76dfc6e8-0b0f-49ef-9dcc-21b7e6797453/1fd9de04-ba5e-42a5-88b2-639f8a2ed978"
+					(page "6")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 213.36 40.64)
+		(size 45.72 25.4)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "52541af6-1c9a-4031-9c0c-7895c18c9c54")
+		(property "Sheetname" "Keys"
+			(at 213.36 39.9288 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "TriMode60_RevE/keys.kicad_sch"
+			(at 213.36 66.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "TriMode60"
+				(path "/3461a5a1-8d1f-495d-8027-8e6f2b41d428"
+					(page "5")
+				)
+			)
+			(project ""
+				(path "/1fd9de04-ba5e-42a5-88b2-639f8a2ed978"
+					(page "#")
+				)
+			)
+			(project "Capstone Keyboard Design"
+				(path "/76dfc6e8-0b0f-49ef-9dcc-21b7e6797453/1fd9de04-ba5e-42a5-88b2-639f8a2ed978"
+					(page "7")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 30.48 40.64)
+		(size 45.72 25.4)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "88b9feb7-a0a7-4ce2-ae01-a2ffc007bd0d")
+		(property "Sheetname" "Power"
+			(at 30.48 39.9288 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "TriMode60_RevE/power.kicad_sch"
+			(at 30.48 66.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "TriMode60"
+				(path "/3461a5a1-8d1f-495d-8027-8e6f2b41d428"
+					(page "2")
+				)
+			)
+			(project ""
+				(path "/1fd9de04-ba5e-42a5-88b2-639f8a2ed978"
+					(page "#")
+				)
+			)
+			(project "Capstone Keyboard Design"
+				(path "/76dfc6e8-0b0f-49ef-9dcc-21b7e6797453/1fd9de04-ba5e-42a5-88b2-639f8a2ed978"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 91.44 40.64)
+		(size 45.72 25.4)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "afc901ac-5601-4c86-b618-941b13488f69")
+		(property "Sheetname" "MCU"
+			(at 91.44 39.9288 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "TriMode60_RevE/mcu.kicad_sch"
+			(at 91.44 66.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "TriMode60"
+				(path "/3461a5a1-8d1f-495d-8027-8e6f2b41d428"
+					(page "3")
+				)
+			)
+			(project ""
+				(path "/1fd9de04-ba5e-42a5-88b2-639f8a2ed978"
+					(page "#")
+				)
+			)
+			(project "Capstone Keyboard Design"
+				(path "/76dfc6e8-0b0f-49ef-9dcc-21b7e6797453/1fd9de04-ba5e-42a5-88b2-639f8a2ed978"
+					(page "5")
+				)
+			)
+		)
+	)
+)

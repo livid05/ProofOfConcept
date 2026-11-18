@@ -1,0 +1,49 @@
+U575 DEVBOARD - REV B  (based on Rev A, STM32U575RGT6)
+=====================================================================
+
+WHY: professor review of Rev A
+ - USB differential pairs: no vias, solid GND reference, matched length, no 90-degree turns
+ - QSPI over breadboard wires is too noisy -> use UART instead
+ - move the MCU down next to the USB connector, keep high-speed traces short
+
+SCHEMATIC
+ - Removed the QSPI flash U4 (W25Q128) and its parts C21, R10, R3, R9.
+ - The old QSPI pins are general-purpose I/O again. They are on the headers and on the new connectors.
+ - J5  UART, JST-SH 4-pin (SM04B-SRSS-TB):  1 GND  2 3V3  3 TX=PA2  4 RX=PA3   (USART2)
+ - J6  MUX, JST-SH 8-pin (SM08B-SRSS-TB):   1 3V3  2 GND  3 SIG=PA6 (ADC)  4 GND
+                                            5 S0=PA7  6 S1=PB0  7 S2=PB1  8 S3=PB2
+ - J7  SWD, 10-pin 1.27 mm Cortex debug:    1 3V3  2 SWDIO  3/5/9 GND  4 SWCLK  6 SWO=PB3  10 NRST
+ - SW3 USER button on PC13 (to GND)
+ - D2 green PWR LED + R12 1k on 3V3
+
+LAYOUT
+ - Board is 10 mm taller: a new top "tail" holds J5/J6, and cables leave from the top edge.
+ - MCU moved 15.4 mm down, right above the USBLC6 ESD chip and the USB-C connector.
+   (USB-C is now about 10 mm of trace from the MCU, down from about 28 mm with 4 vias.)
+ - USB pair rules:
+     * DM/DP and DM_C/DP_C are on F.Cu only, with zero vias.
+     * Every bend is 45 degrees. There are no 90-degree corners anywhere on the board.
+     * Solid In1.Cu GND plane under the whole pair (checked: 100% coverage >=0.1 mm past the trace edges).
+     * Width 0.20 mm, gap 0.30 mm is about 93 ohm differential on the JLC04161H-3313 stackup (USB wants 90 ohm +/-15%).
+     * Length mismatch is 0.2 mm total, about 1 ps.
+     * The USB-C A/B pad pairs are joined with 45-degree jumpers.
+       D- is joined above the pads. D+ is joined in a loop under the receptacle.
+ - Header pinout (J2/J3) is unchanged, so Rev A breadboard wiring still works.
+ - Stackup in the file is set to JLC04161H-3313. Order with that stackup and "impedance control".
+
+CHECKS
+ - DRC with schematic parity: 0 errors, 0 unconnected.
+   The 2 remaining warnings are footprint-library mismatches (Y2, J4) that were already in Rev A.
+ - ERC: same as Rev A. There are 4 errors and 21 warnings on the off-board mux symbol M1 and its labels.
+
+PRODUCTION (production/)
+ - Capstone_Keyboard_Design_RevB_gerbers.zip, bom.csv, positions.csv (JLC format, LCSC numbers)
+ - J2/J3 headers and J4 test pin are hand-soldered, so they are not in the BOM (same as Rev A).
+ - New LCSC parts:
+     * J5 C160404
+     * J6 C160407
+     * J7 C41376037
+     * SW3 C231329
+     * D2 C12624
+     * R12 C21190
+ - In JLC's placement preview, check the rotation of J5, J6 and J7.

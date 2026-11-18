@@ -1,0 +1,6 @@
+(version 1)
+# Added during the Sep 2026 design review: In1.Cu is the solid GND reference
+# for every F.Cu signal. Any track routed on it will show up as a DRC error.
+(rule "Keep In1 solid GND"
+	(layer "In1.Cu")
+	(constraint disallow track))
