@@ -1,0 +1,419 @@
+#MicroXplorer Configuration settings - do not modify
+#Sun Apr 12 2026
+
+File.Version=6
+ProjectManager.ProjectBaudRate=115200
+ProjectManager.ProjectFileName=Capstone_Keyboard.ioc
+ProjectManager.ProjectName=Capstone_Keyboard
+ProjectManager.LibraryCopySrc=1
+ProjectManager.ProjectBackupEnable=false
+ProjectManager.HalAssertFull=false
+ProjectManager.PreviousToolchain=STM32CubeIDE
+ProjectManager.StandaloneCopySrc=1
+ProjectManager.UnderRoot=false
+ProjectManager.functionlistsort=1-SystemClock_Config-RCC-false-HAL-false,2-MX_GPIO_Init-GPIO-false-HAL-true,3-MX_DMA_Init-DMA-false-HAL-true,4-MX_ADC1_Init-ADC1-false-HAL-true,5-MX_TIM3_Init-TIM3-false-HAL-true,6-MX_SPI2_Init-SPI2-false-HAL-true,7-MX_USART1_UART_Init-USART1-false-HAL-true,8-MX_USB_OTG_HS_PCD_Init-USB_OTG_HS-false-HAL-true,9-MX_OCTOSPI1_Init-OCTOSPI1-false-HAL-true
+ProjectManager.ProjectType=STM32CubeIDE
+ProjectManager.Toolchain=STM32CubeIDE
+ProjectManager.LibraryCopyDst=Drivers
+
+# ============================================================
+# MCU
+# ============================================================
+Mcu.Family=STM32U5
+Mcu.IP0=ADC1
+Mcu.IP1=DMA
+Mcu.IP2=NVIC
+Mcu.IP3=OCTOSPI1
+Mcu.IP4=RCC
+Mcu.IP5=SPI2
+Mcu.IP6=SYS
+Mcu.IP7=TIM3
+Mcu.IP8=USART1
+Mcu.IP9=USB_OTG_HS
+Mcu.IPNb=10
+Mcu.Name=STM32U595RITx
+Mcu.Package=LQFP64
+Mcu.Pin0=PA0
+Mcu.Pin1=PA1
+Mcu.Pin2=PA2
+Mcu.Pin3=PA3
+Mcu.Pin4=PA4
+Mcu.Pin5=PA5
+Mcu.Pin6=PA6
+Mcu.Pin7=PA7
+Mcu.Pin8=PA9
+Mcu.Pin9=PA10
+Mcu.Pin10=PA11
+Mcu.Pin11=PA12
+Mcu.Pin12=PA13
+Mcu.Pin13=PA14
+Mcu.Pin14=PB0
+Mcu.Pin15=PB1
+Mcu.Pin16=PB2
+Mcu.Pin17=PB5
+Mcu.Pin18=PB6
+Mcu.Pin19=PB7
+Mcu.Pin20=PB8
+Mcu.Pin21=PB9
+Mcu.Pin22=PB12
+Mcu.Pin23=PB13
+Mcu.Pin24=PB14
+Mcu.Pin25=PB15
+Mcu.Pin26=PC0
+Mcu.Pin27=PC1
+Mcu.Pin28=PC2
+Mcu.Pin29=PC3
+Mcu.Pin30=PC4
+Mcu.Pin31=PC5
+Mcu.Pin32=PC6
+Mcu.Pin33=PC7
+Mcu.Pin34=PC8
+Mcu.Pin35=PC9
+Mcu.Pin36=PC10
+Mcu.Pin37=PC11
+Mcu.Pin38=PH0-OSC_IN
+Mcu.Pin39=PH1-OSC_OUT
+Mcu.PinsNb=40
+Mcu.ThirdPartyNb=0
+Mcu.UserConstants=
+Mcu.UserName=STM32U595RITx
+
+# ============================================================
+# RCC - 25 MHz HSE crystal -> PLL -> 160 MHz SYSCLK
+# ============================================================
+RCC.ADCFreq_Value=80000000
+RCC.AHB1Freq_Value=160000000
+RCC.AHB2Freq_Value=160000000
+RCC.APB1Freq_Value=160000000
+RCC.APB2Freq_Value=160000000
+RCC.APB3Freq_Value=160000000
+RCC.CortexFreq_Value=160000000
+RCC.FCLKCortexFreq_Value=160000000
+RCC.HCLKFreq_Value=160000000
+RCC.HSE_VALUE=25000000
+RCC.HSEState=RCC_HSE_ON
+RCC.HSIState=RCC_HSI_OFF
+RCC.IPParameters=ADCFreq_Value,AHB1Freq_Value,AHB2Freq_Value,APB1Freq_Value,APB2Freq_Value,APB3Freq_Value,CortexFreq_Value,FCLKCortexFreq_Value,HCLKFreq_Value,HSE_VALUE,HSEState,HSIState,MCO1PinFreq_Value,PLLFreq_Value,PLLMState,PLLM,PLLN,PLLP,PLLQ,PLLR,PLLSourceVirtual,SYSCLKFreq_VALUE,SYSCLKSource,TimSysFreq_Value,USB48MFreq_Value
+RCC.MCO1PinFreq_Value=160000000
+RCC.PLLFreq_Value=160000000
+RCC.PLLMState=RCC_PLL_ON
+RCC.PLLM=5
+RCC.PLLN=64
+RCC.PLLP=2
+RCC.PLLQ=2
+RCC.PLLR=2
+RCC.PLLSourceVirtual=RCC_PLLSOURCE_HSE
+RCC.SYSCLKFreq_VALUE=160000000
+RCC.SYSCLKSource=RCC_SYSCLKSOURCE_PLLCLK
+RCC.TimSysFreq_Value=160000000
+RCC.USB48MFreq_Value=48000000
+
+# ============================================================
+# SYS - SWD debug
+# ============================================================
+SYS.IPParameters=Prefetch,SWDLow
+SYS.Prefetch=0
+SYS.SWDLow=SWD
+
+# ============================================================
+# ADC1 - 4 channels for TMR sensor mux output
+# PC0=ADC1_IN1, PC1=ADC1_IN2, PC2=ADC1_IN3, PC3=ADC1_IN4
+# Scan mode with DMA for automatic mux channel sweeping
+# ============================================================
+ADC1.Channel-0\ChannelRegularConversion=ADC_CHANNEL_1
+ADC1.Channel-1\ChannelRegularConversion=ADC_CHANNEL_2
+ADC1.Channel-2\ChannelRegularConversion=ADC_CHANNEL_3
+ADC1.Channel-3\ChannelRegularConversion=ADC_CHANNEL_4
+ADC1.IPParameters=Channel-0\ChannelRegularConversion,Channel-1\ChannelRegularConversion,Channel-2\ChannelRegularConversion,Channel-3\ChannelRegularConversion,NbrOfConversionFlag,master,SamplingTimeCommon1,ContinuousConvMode,DMAContinuousRequests,EOCSelection,NbrOfConversion,ScanConvMode
+ADC1.NbrOfConversionFlag=1
+ADC1.master=1
+ADC1.SamplingTimeCommon1=ADC_SAMPLETIME_640CYCLES_5
+ADC1.ContinuousConvMode=DISABLE
+ADC1.DMAContinuousRequests=ENABLE
+ADC1.EOCSelection=ADC_EOC_SEQ_CONV
+ADC1.NbrOfConversion=4
+ADC1.ScanConvMode=1
+
+# ============================================================
+# TIM3 - Rotary encoder quadrature decode
+# PA8=TIM3_CH1 (ENC_CLK), PA9=TIM3_CH2 (ENC_DT)
+# NOTE: PA8 is NOT in the LQFP64 standard pinout for TIM3
+# Use TIM3_CH1=PC6, TIM3_CH2=PC7 instead (available on U595 LQFP64)
+# CORRECTED: PC6=TIM3_CH1, PC7=TIM3_CH2
+# ============================================================
+TIM3.Channel-CH1=TIM_CHANNEL_1
+TIM3.Channel-CH2=TIM_CHANNEL_2
+TIM3.EncoderMode=TIM_ENCODERMODE_TI12
+TIM3.IPParameters=Channel-CH1,Channel-CH2,EncoderMode,Prescaler,Period
+TIM3.Prescaler=0
+TIM3.Period=65535
+
+# ============================================================
+# SPI2 - SK6812 LED data (WS2812 protocol via SPI MOSI)
+# PB15=SPI2_MOSI (LED_DATA)
+# SPI configured at 3.2MHz: each WS2812 bit = 3 SPI bits
+# 0-bit = 0b100, 1-bit = 0b110 at 3.2MHz -> ~312ns/bit period
+# ============================================================
+SPI2.IPParameters=VirtualType,Mode,Direction,DataSize,FirstBit,TIMode,CRCCalculation,NSS,BaudRatePrescaler,NSSPMode,NSSPolarity
+SPI2.VirtualType=VM_MASTER
+SPI2.Mode=SPI_MODE_MASTER
+SPI2.Direction=SPI_DIRECTION_1LINE
+SPI2.DataSize=SPI_DATASIZE_8BIT
+SPI2.FirstBit=SPI_FIRSTBIT_MSB
+SPI2.TIMode=SPI_TIMODE_DISABLE
+SPI2.CRCCalculation=SPI_CRCCALCULATION_DISABLE
+SPI2.NSS=SPI_NSS_SOFT
+SPI2.BaudRatePrescaler=SPI_BAUDRATEPRESCALER_32
+SPI2.NSSPMode=SPI_NSS_PULSE_DISABLE
+SPI2.NSSPolarity=SPI_NSS_POLARITY_LOW
+
+# ============================================================
+# USART1 - Debug UART
+# PA9=USART1_TX, PA10=USART1_RX
+# NOTE: PA9/PA10 conflict with TIM3 encoder.
+# TIM3 encoder moved to PC6/PC7, so PA9/PA10 are free for USART1
+# ============================================================
+USART1.IPParameters=VirtualMode-Asynchronous
+USART1.VirtualMode-Asynchronous=VM_ASYNC
+
+# ============================================================
+# USB OTG HS - USB HID keyboard (internal HS PHY on U595)
+# PA11=USB_OTG_HS_DM, PA12=USB_OTG_HS_DP
+# ============================================================
+USB_OTG_HS.IPParameters=VirtualMode,PhyInterface
+USB_OTG_HS.VirtualMode=Device_Only
+USB_OTG_HS.PhyInterface=USB_OTG_EMBEDDED_PHY
+
+# ============================================================
+# OCTOSPI1 - W25Q128JVS 16MB NOR Flash
+# PA2=OCTOSPIM_P1_NCS, PA3=OCTOSPIM_P1_CLK
+# PA6=OCTOSPIM_P1_IO3, PA7=OCTOSPIM_P1_IO2
+# PC4=OCTOSPIM_P1_IO1, PC5=OCTOSPIM_P1_IO0
+# ============================================================
+OCTOSPI1.IPParameters=FifoThresholdByte,DualQuad,MemoryType,DeviceSize,ChipSelectHighTimeCycle,FreeRunningClock,WrapSize,ClockMode,ClockPrescaler,SampleShifting,DelayHoldQuarterCycle,ChipSelectBoundary
+OCTOSPI1.FifoThresholdByte=4
+OCTOSPI1.DualQuad=HAL_OSPI_DUALQUAD_DISABLE
+OCTOSPI1.MemoryType=HAL_OSPI_MEMTYPE_MICRON
+OCTOSPI1.DeviceSize=23
+OCTOSPI1.ChipSelectHighTimeCycle=2
+OCTOSPI1.FreeRunningClock=HAL_OSPI_FREERUNCLK_DISABLE
+OCTOSPI1.WrapSize=HAL_OSPI_WRAP_NOT_SUPPORTED
+OCTOSPI1.ClockMode=HAL_OSPI_CLOCK_MODE_0
+OCTOSPI1.ClockPrescaler=1
+OCTOSPI1.SampleShifting=HAL_OSPI_SAMPLE_SHIFTING_HALFCYCLE
+OCTOSPI1.DelayHoldQuarterCycle=HAL_OSPI_DHQC_DISABLE
+OCTOSPI1.ChipSelectBoundary=0
+
+# ============================================================
+# GPIO PIN ASSIGNMENTS
+# ============================================================
+
+# --- QSPI Flash (OCTOSPI1) ---
+PA2.Mode=OCTOSPIM_P1_NCS
+PA2.Signal=OCTOSPIM_P1_NCS
+PA3.Mode=OCTOSPIM_P1_CLK
+PA3.Signal=OCTOSPIM_P1_CLK
+PA6.Mode=OCTOSPIM_P1_IO3
+PA6.Signal=OCTOSPIM_P1_IO3
+PA7.Mode=OCTOSPIM_P1_IO2
+PA7.Signal=OCTOSPIM_P1_IO2
+PC4.Mode=OCTOSPIM_P1_IO1
+PC4.Signal=OCTOSPIM_P1_IO1
+PC5.Mode=OCTOSPIM_P1_IO0
+PC5.Signal=OCTOSPIM_P1_IO0
+
+# --- USB OTG HS ---
+PA11.Mode=Device_Only
+PA11.Signal=USB_OTG_HS_DM
+PA12.Mode=Device_Only
+PA12.Signal=USB_OTG_HS_DP
+
+# --- SWD Debug ---
+PA13.Mode=Serial_Wire
+PA13.Signal=SYS_SWDIO
+PA14.Mode=Serial_Wire
+PA14.Signal=SYS_SWCLK
+
+# --- HSE Crystal ---
+PH0-OSC_IN.Mode=HSE-External-Oscillator
+PH0-OSC_IN.Signal=RCC_OSC_IN
+PH1-OSC_OUT.Mode=HSE-External-Oscillator
+PH1-OSC_OUT.Signal=RCC_OSC_OUT
+
+# --- ADC1 Inputs (TMR sensor mux outputs) ---
+PC0.Mode=IN1-Single-Ended
+PC0.Signal=ADC1_INP1
+PC1.Mode=IN2-Single-Ended
+PC1.Signal=ADC1_INP2
+PC2.Mode=IN3-Single-Ended
+PC2.Signal=ADC1_INP3
+PC3.Mode=IN4-Single-Ended
+PC3.Signal=ADC1_INP4
+
+# --- MUX Address Lines (S0-S3) ---
+# Controls which of 16 TMR sensors is routed to ADC inputs
+PB6.GPIO_Label=MUX_S0
+PB6.GPIO_ModeDefaultEXTI=GPIO_MODE_OUTPUT_PP
+PB6.GPIO_PuPd=GPIO_NOPULL
+PB6.GPIO_Speed=GPIO_SPEED_FREQ_LOW
+PB6.Locked=true
+PB6.Signal=GPIO_Output
+
+PB7.GPIO_Label=MUX_S1
+PB7.GPIO_ModeDefaultEXTI=GPIO_MODE_OUTPUT_PP
+PB7.GPIO_PuPd=GPIO_NOPULL
+PB7.GPIO_Speed=GPIO_SPEED_FREQ_LOW
+PB7.Locked=true
+PB7.Signal=GPIO_Output
+
+PB8.GPIO_Label=MUX_S2
+PB8.GPIO_ModeDefaultEXTI=GPIO_MODE_OUTPUT_PP
+PB8.GPIO_PuPd=GPIO_NOPULL
+PB8.GPIO_Speed=GPIO_SPEED_FREQ_LOW
+PB8.Locked=true
+PB8.Signal=GPIO_Output
+
+PB9.GPIO_Label=MUX_S3
+PB9.GPIO_ModeDefaultEXTI=GPIO_MODE_OUTPUT_PP
+PB9.GPIO_PuPd=GPIO_NOPULL
+PB9.GPIO_Speed=GPIO_SPEED_FREQ_LOW
+PB9.Locked=true
+PB9.Signal=GPIO_Output
+
+# --- TIM3 Encoder (Rotary Encoder CLK/DT) ---
+# PC6=TIM3_CH1 (ENC_CLK), PC7=TIM3_CH2 (ENC_DT)
+PC6.Mode=Input Capture CH1
+PC6.Signal=TIM3_CH1
+PC6.GPIO_Label=ENC_CLK
+PC7.Mode=Input Capture CH2
+PC7.Signal=TIM3_CH2
+PC7.GPIO_Label=ENC_DT
+
+# --- Encoder Switch (GPIO EXTI) ---
+PC8.GPIO_Label=ENC_SW
+PC8.GPIO_ModeDefaultEXTI=GPIO_MODE_IT_FALLING
+PC8.GPIO_PuPd=GPIO_PULLUP
+PC8.Locked=true
+PC8.Signal=GPXTI8
+
+# --- Matrix ROW outputs (4 rows, GPIO push-pull output) ---
+PC9.GPIO_Label=ROW_1
+PC9.GPIO_ModeDefaultEXTI=GPIO_MODE_OUTPUT_PP
+PC9.GPIO_PuPd=GPIO_NOPULL
+PC9.GPIO_Speed=GPIO_SPEED_FREQ_LOW
+PC9.Locked=true
+PC9.Signal=GPIO_Output
+
+PC10.GPIO_Label=ROW_2
+PC10.GPIO_ModeDefaultEXTI=GPIO_MODE_OUTPUT_PP
+PC10.GPIO_PuPd=GPIO_NOPULL
+PC10.GPIO_Speed=GPIO_SPEED_FREQ_LOW
+PC10.Locked=true
+PC10.Signal=GPIO_Output
+
+PC11.GPIO_Label=ROW_3
+PC11.GPIO_ModeDefaultEXTI=GPIO_MODE_OUTPUT_PP
+PC11.GPIO_PuPd=GPIO_NOPULL
+PC11.GPIO_Speed=GPIO_SPEED_FREQ_LOW
+PC11.Locked=true
+PC11.Signal=GPIO_Output
+
+PB5.GPIO_Label=ROW_4
+PB5.GPIO_ModeDefaultEXTI=GPIO_MODE_OUTPUT_PP
+PB5.GPIO_PuPd=GPIO_NOPULL
+PB5.GPIO_Speed=GPIO_SPEED_FREQ_LOW
+PB5.Locked=true
+PB5.Signal=GPIO_Output
+
+# --- Matrix COL inputs (4 cols, GPIO input with pull-down) ---
+PB0.GPIO_Label=COL_1
+PB0.GPIO_ModeDefaultEXTI=GPIO_MODE_INPUT
+PB0.GPIO_PuPd=GPIO_PULLDOWN
+PB0.Locked=true
+PB0.Signal=GPIO_Input
+
+PB1.GPIO_Label=COL_2
+PB1.GPIO_ModeDefaultEXTI=GPIO_MODE_INPUT
+PB1.GPIO_PuPd=GPIO_PULLDOWN
+PB1.Locked=true
+PB1.Signal=GPIO_Input
+
+PB2.GPIO_Label=COL_3
+PB2.GPIO_ModeDefaultEXTI=GPIO_MODE_INPUT
+PB2.GPIO_PuPd=GPIO_PULLDOWN
+PB2.Locked=true
+PB2.Signal=GPIO_Input
+
+PB12.GPIO_Label=COL_4
+PB12.GPIO_ModeDefaultEXTI=GPIO_MODE_INPUT
+PB12.GPIO_PuPd=GPIO_PULLDOWN
+PB12.Locked=true
+PB12.Signal=GPIO_Input
+
+# --- SPI2 MOSI for SK6812 LED data ---
+PB15.Mode=Full_Duplex_Master
+PB15.Signal=SPI2_MOSI
+PB15.GPIO_Label=LED_DATA
+
+# --- USART1 Debug TX/RX ---
+PA9.Mode=Asynchronous
+PA9.Signal=USART1_TX
+PA10.Mode=Asynchronous
+PA10.Signal=USART1_RX
+
+# --- Status LED (D1 RED from schematic) ---
+PA0.GPIO_Label=LED_RED
+PA0.GPIO_ModeDefaultEXTI=GPIO_MODE_OUTPUT_PP
+PA0.GPIO_PuPd=GPIO_NOPULL
+PA0.GPIO_Speed=GPIO_SPEED_FREQ_LOW
+PA0.Locked=true
+PA0.Signal=GPIO_Output
+
+# --- VCAP pin (PB1 area - internal voltage regulator cap) ---
+# PB1 is used as VCAP on U595 - do NOT assign as GPIO
+# 2.2uF low-ESR cap required on this pin per schematic (C3)
+
+# ============================================================
+# DMA - ADC1 scan via DMA1 Channel 1
+# ============================================================
+Dma.ADC1.0.Direction=DMA_PERIPH_TO_MEMORY
+Dma.ADC1.0.EventEnable=DISABLE
+Dma.ADC1.0.Instance=GPDMA1_Channel0
+Dma.ADC1.0.MemDataAlignment=DMA_MDATAALIGN_HALFWORD
+Dma.ADC1.0.MemInc=DMA_MINC_ENABLE
+Dma.ADC1.0.Mode=DMA_CIRCULAR
+Dma.ADC1.0.PeriphDataAlignment=DMA_PDATAALIGN_HALFWORD
+Dma.ADC1.0.PeriphInc=DMA_PINC_DISABLE
+Dma.ADC1.0.Priority=DMA_PRIORITY_HIGH
+Dma.ADC1.0.RequestNumber=1
+Dma.ADC1.0.SrcSecure=DMA_CHANNEL_SRC_SEC
+Dma.ADC1.0.DestSecure=DMA_CHANNEL_DEST_NSEC
+Dma.SPI2.1.Direction=DMA_MEMORY_TO_PERIPH
+Dma.SPI2.1.EventEnable=DISABLE
+Dma.SPI2.1.Instance=GPDMA1_Channel1
+Dma.SPI2.1.MemDataAlignment=DMA_MDATAALIGN_BYTE
+Dma.SPI2.1.MemInc=DMA_MINC_ENABLE
+Dma.SPI2.1.Mode=DMA_NORMAL
+Dma.SPI2.1.PeriphDataAlignment=DMA_PDATAALIGN_BYTE
+Dma.SPI2.1.PeriphInc=DMA_PINC_DISABLE
+Dma.SPI2.1.Priority=DMA_PRIORITY_MEDIUM
+Dma.SPI2.1.RequestNumber=1
+Dma.RequestersNb=2
+
+# ============================================================
+# NVIC
+# ============================================================
+NVIC.ADC1_IRQn=true\:0\:0\:false\:false\:true\:true\:true\:true
+NVIC.DMA1_Channel0_IRQn=true\:0\:0\:false\:false\:true\:true\:true\:true
+NVIC.DMA1_Channel1_IRQn=true\:0\:0\:false\:false\:true\:true\:true\:true
+NVIC.EXTI9_5_IRQn=true\:0\:0\:false\:false\:true\:true\:true\:true
+NVIC.TIM3_IRQn=true\:0\:0\:false\:false\:true\:true\:true\:true
+NVIC.USB_IRQn=true\:0\:0\:false\:false\:true\:true\:true\:true
+NVIC.USART1_IRQn=true\:0\:0\:false\:false\:true\:true\:true\:true
+NVIC.ForceEnableDMAVector=true
+NVIC.PriorityGroup=NVIC_PRIORITYGROUP_4
+
+# ============================================================
+# TrustZone - DISABLED (all non-secure, single project)
+# ============================================================
+ProjectManager.ProjectSecure=false
