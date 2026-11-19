@@ -1,64 +1,156 @@
-# Keypad to Keyboard: from an RP2040 proof of concept to a TMR analog keyboard on STM32U5A5
+<div align="center">
 
-This repository documents one project from start to finish: a wireless macro pad that started as QMK firmware on an RP2040, and became a capstone effort to build a fast, reliable, low-power keyboard with TMR (tunnel magnetoresistance) analog keys on an STM32U5A5, with 8 kHz USB reporting as a goal.
+# Per-Key Precision
 
-It holds the code, the KiCad hardware for every board revision, the bench results, and the reasoning behind each decision, written so someone new could follow the whole path and so the author can pick it up again after a break.
+### A fast, low-power TMR analog keyboard on the STM32U5A5
 
-## Where things stand (2026-11-18)
+From an RP2040 QMK macro pad to a from-scratch firmware, with every board, measurement and mistake written down.
 
-| Area | State | How it is known |
+![MCU](https://img.shields.io/badge/MCU-STM32U5A5RJT6-03234B)
+![USB](https://img.shields.io/badge/USB%20report%20rate-7999%2Fs%20measured-brightgreen)
+![Keys](https://img.shields.io/badge/numpad%20keys-14%20of%2015%20pass-yellow)
+![Sensors](https://img.shields.io/badge/sensors-TMR2615D-blue)
+![EDA](https://img.shields.io/badge/EDA-KiCad%209-314CB0)
+![License](https://img.shields.io/badge/code-MIT-lightgrey)
+
+<img src="hardware/images/panel/RENDER_top.png" alt="Top render of the dev board and numpad panel" width="560">
+
+[Quick start](#quick-start) | [Results](#results-so-far) | [The boards](#the-boards) | [Docs](#find-what-you-need) | [Roadmap](#whats-next) | [License](#license)
+
+</div>
+
+---
+
+## What this is
+
+A capstone project to build a keyboard that senses how far each key is pressed, using TMR (tunnel magnetoresistance) sensors, and reports it to a PC over USB at 8 kHz. The firmware is written from scratch for an STM32U5A5, replacing an earlier QMK proof of concept on an RP2040. The goals are speed, a reliable connection, low power draw and a robust feature set.
+
+This repository holds everything: the firmware, the KiCad hardware for every board revision, the bench results, the research, the presentations, and the reasoning behind each decision.
+
+## How it works
+
+```mermaid
+flowchart LR
+    A[15 TMR2615D sensors] --> B[CD74HC4067 analog mux]
+    B --> C[RC filter 100 ohm + 4.7 nF]
+    C --> D[STM32U5A5 ADC1 on PC4]
+    D --> E[Press logic and rapid trigger]
+    E --> F[USB HID, 8 kHz]
+    F --> G[PC]
+```
+
+Each sensor outputs a voltage that moves as a magnet gets closer. One 16-way mux feeds a single ADC pin, so the firmware scans the keys one after another. At 8 kHz a full scan has to finish in 125 microseconds. The simple blocking scan takes 730 microseconds for 16 inputs, so a faster pipelined scan has been written; it is the next thing to test on the board. [How the sensing works](docs/03-tmr-sensing-guide.md) explains the details in plain language.
+
+## Results so far
+
+| What | Result | Status |
 |---|---|---|
-| RP2040 QMK keypad with BLE and 2.4 GHz bridges | Built and working | Original proof of concept, see the RP2040 write-up |
-| STM32U5A5 USB HID firmware, 4x4 matrix | Built, bench-tested | Typed on hardware; column 3/4 fix still needs a recheck |
-| USB report rate | 7999 reports per second measured | Rate-test image on the author's PC, 0 dropped in 10 s |
-| TMR numpad (15 sensors, mux, ADC) | 14 of 15 keys pass the self-test | Observed on the bench; key K4 is open and parked |
-| Blocking TMR scan | 730 us for 16 inputs | Measured; too slow for an 8 kHz scan |
-| Fast pipelined scan and rapid trigger image | Written and PC-tested only | Not built for the board or run on hardware yet. Results pending |
-| Full tri-mode keyboard (TriMode60) | Board designed through Rev E, not built or tested | Design only |
+| USB report rate | 7999 reports per second, 0 dropped in 10 seconds | Measured on a PC |
+| TMR numpad self-test | 14 of 15 keys pass | Observed on the bench; key K4 is open and parked |
+| Blocking scan time | 730 microseconds for 16 inputs | Measured; too slow for 8 kHz |
+| Fast pipelined scan with rapid trigger | Written, passes PC tests and a syntax check | Not yet built for the board or run on hardware |
+| Full tri-mode keyboard (TriMode60) | Designed through Rev E | Design only, not built |
 
-Anything marked pending has not been observed on hardware. The docs keep that distinction on purpose.
+Things marked as not yet run have not been observed on hardware. The docs keep that difference on purpose. The [bench write-up](docs/04-bench-bringup-2026-11-18.md) has the numbers and how each problem was found.
 
-## Read in this order
+## The boards
 
-1. [Project story](docs/01-project-story.md): the timeline from the RP2040 pad to today.
-2. [Hardware evolution](docs/02-hardware-evolution.md): every dev board, numpad and keyboard revision, what changed and why, with images.
-3. [TMR sensing guide](docs/03-tmr-sensing-guide.md): how the sensors, mux and ADC work together, and how this board is wired.
-4. [Bench bring-up, 2026-11-18](docs/04-bench-bringup-2026-11-18.md): what was measured, what went wrong, and how each problem was found.
-5. [Build, flash and test guide](docs/05-build-flash-test-guide.md): how to build the images, flash them and run the console.
-6. [Scanning at 8 kHz and market research](docs/06-8k-scanning-and-market-research.md): the time budget, the tradeoffs, and what shipping TMR keyboards do.
-7. [Roadmap](docs/07-roadmap.md): what is next, in order.
-8. [Lessons learned](docs/08-lessons-learned.md): mistakes worth not repeating.
-9. [KiCad guide](docs/09-kicad-guide.md): how to open the projects, net classes, stackups, pinouts, bills of materials and ordering notes.
-10. [Presentations and reports](docs/10-presentations-and-reports.md): what each deck and document in `reports/` is for.
+| Board | Purpose | Layers | Status |
+|---|---|---|---|
+| [Dev board Rev K](hardware/devboard-u5a5/RevK/) | STM32U5A5 development board with USB-C, SWD, a 16-channel mux and a sensor header | 4 | Built and in use |
+| [Numpad TMR1 Rev E](hardware/numpad-tmr/RevE/) | 15 TMR sensors in a numpad layout, wired to the dev board | 2 | Built, 14 of 15 keys pass |
+| [TriMode60 Rev E](hardware/trimode60/RevE/) | 61 sensors, USB, Bluetooth LE and 2.4 GHz radio in one board | 4 | Designed, not built |
 
-The original proof-of-concept README is kept as [docs/rp2040-proof-of-concept.md](docs/rp2040-proof-of-concept.md).
+<p align="center">
+  <img src="hardware/images/trimode60/TriMode60_top_3d.png" alt="TriMode60 top view" width="49%">
+  <img src="hardware/images/trimode60/TriMode60_bottom_3d.png" alt="TriMode60 bottom view" width="49%">
+</p>
 
-## Repository map
+Every revision of every board has notes on what changed and why, with before and after pictures, in [Hardware evolution](docs/02-hardware-evolution.md).
 
-| Path | Contents |
+## Quick start
+
+You need a Windows PC with STM32CubeIDE installed (the scripts use the compiler and tools that come with it), VS Code, and the dev board plus numpad.
+
+**1. Build the firmware**
+
+```powershell
+cd stm32u5a5-keypad
+.\tools\build.ps1
+```
+
+**2. Flash over USB**
+
+Connect the dev board with a data cable, hold BOOT, tap RST, release BOOT, then:
+
+```powershell
+.\tools\flash-usb.ps1
+```
+
+Press RST afterwards. Prebuilt images are in [`binaries/`](binaries/) if you only want to flash.
+
+**3. Run the PC tests (no board needed)**
+
+```powershell
+.\tools\test-host.ps1
+```
+
+**4. Try the TMR fast-scan image** (not yet run on hardware)
+
+```powershell
+cd future_work\2026-11-18_tmr_fast\tools
+.\build-tmr-fast.ps1
+.\flash-tmr-fast-usb.ps1
+.\tmr-console.ps1
+```
+
+In the console press `t` for the self-test, then `x` for the sweep that measures noise. Full steps, ports and troubleshooting are in the [Build, flash and test guide](docs/05-build-flash-test-guide.md).
+
+## Find what you need
+
+| I want to... | Read |
 |---|---|
-| `docs/` | The guides above, plus `docs/images/` |
-| `hardware/` | KiCad projects, production files and revision notes for the dev board, numpad and TriMode60. See [hardware/README.md](hardware/README.md) |
-| `stm32u5a5-keypad/` | STM32U5A5 firmware, host tests, build tools and the `future_work` test images. Its own `docs/STATUS.md` and `docs/HANDOFF.md` are the day-to-day status files |
-| `reports/` | Presentations, the Rev H overview, instructor feedback and the capstone deck source. All rights reserved |
-| `cubemx/` | STM32CubeMX `.ioc` configuration files |
-| `rp2040-reference/` | Raspberry Pi GPIO scripts, Numpad TMR1 reference archives and the VIA configuration from the RP2040 stage |
-| `binaries/` | Prebuilt `.bin` and `.hex` images of the verified firmware steps and diagnostics |
-| `schematics/` | Earlier KiCad work from the RP2040 stage (capstone design, matrix and mux, numpad TMR1) |
-| repo root (`keyboard.json`, `proofofconcept.c`, `mux_analog.c` and others) | The RP2040 QMK keyboard definition |
-| `ble_bridge/`, `esb_bridge/`, `esb_dongle/` | nRF52840 wireless bridge and dongle firmware |
+| Understand the whole story | [Project story](docs/01-project-story.md) |
+| See how the boards changed | [Hardware evolution](docs/02-hardware-evolution.md) |
+| Learn how the sensors and ADC work | [TMR sensing guide](docs/03-tmr-sensing-guide.md) |
+| See what was measured and what broke | [Bench bring-up](docs/04-bench-bringup-2026-11-18.md) |
+| Build, flash and test | [Build, flash and test guide](docs/05-build-flash-test-guide.md) |
+| Compare with other 8K TMR keyboards | [8 kHz scanning and market research](docs/06-8k-scanning-and-market-research.md) |
+| Know what comes next | [Roadmap](docs/07-roadmap.md) |
+| Avoid my mistakes | [Lessons learned](docs/08-lessons-learned.md) |
+| Open or order the KiCad boards | [KiCad guide](docs/09-kicad-guide.md) |
+| Find a presentation or report | [Presentations and reports](docs/10-presentations-and-reports.md) |
+| See how it started on the RP2040 | [RP2040 proof of concept](docs/rp2040-proof-of-concept.md) |
 
-## Licensing
+## What is in the repository
 
-Short version, in plain words; the exact terms are in [`LICENSE`](LICENSE).
-
-| Part | Terms |
+| Folder | Contents |
 |---|---|
-| My firmware, tools, tests and bridge code | MIT |
-| Hardware designs (KiCad projects, libraries, production files) | MIT |
-| Documentation, guides and images | CC BY 4.0 |
-| Reports, presentations and coursework in `reports/` | All rights reserved |
-| ST HAL, CMSIS, USB core | Their own ST and Arm licenses, kept in the same folders |
-| QMK-based RP2040 files at the top level | GPL-2.0-or-later |
+| [`stm32u5a5-keypad/`](stm32u5a5-keypad/) | The firmware, PC tests, build tools and the diagnostic test images. Its `docs/STATUS.md` is the day-to-day status |
+| [`hardware/`](hardware/) | KiCad projects, production files and revision notes for all three boards |
+| [`docs/`](docs/) | The guides listed above |
+| [`reports/`](reports/) | Presentations, the Rev H overview, instructor feedback and the capstone deck source |
+| [`binaries/`](binaries/) | Prebuilt `.bin` and `.hex` images of each verified step |
+| [`cubemx/`](cubemx/) | STM32CubeMX configuration files |
+| [`rp2040-reference/`](rp2040-reference/) | Material from the RP2040 stage |
+| Repo root, [`ble_bridge/`](ble_bridge/), [`esb_bridge/`](esb_bridge/), [`esb_dongle/`](esb_dongle/), [`schematics/`](schematics/) | The original RP2040 QMK keypad, its wireless bridges and early schematics |
 
-The USB ID 0483:5710 used for bench work is ST's demonstration ID and must be replaced before any product is shared or sold. See `stm32u5a5-keypad/docs/THIRD_PARTY.md` for where each third-party part came from.
+## What's next
+
+1. Replace the open sensor on key K4 and recheck columns 3 and 4 of the matrix.
+2. Build and run the fast scan image on the board, then read the noise sweep.
+3. Tune the press thresholds and rapid trigger from real data.
+4. Add low-power modes and measure current draw.
+5. Build TriMode60 and bring up the radio.
+
+The full ordered list, with reasons, is in the [Roadmap](docs/07-roadmap.md).
+
+## License
+
+Code and hardware designs are MIT, documentation and images are CC BY 4.0, and the reports in `reports/` are all rights reserved. ST and Arm code keeps its own licenses, and the QMK-based RP2040 files are GPL-2.0-or-later. The USB ID 0483:5710 used for bench work is ST's demonstration ID and must be replaced before any product is shared or sold. The exact terms are in [`LICENSE`](LICENSE).
+
+<div align="center">
+
+Made by Tyler Judkins, computer engineering technology, Central Connecticut State University
+
+</div>
